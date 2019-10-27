@@ -30,6 +30,10 @@ Builtin automated tests can be run by executing
 npm run test
 ```
 
+## Live demo
+
+You can try out this library by using the online [KNX float converter](https://knx.madeby.tw/)
+
 ## Author
 
 * **Tobias Wegner** - [www.tobiaswegner.de](https://www.tobiaswegner.de)
