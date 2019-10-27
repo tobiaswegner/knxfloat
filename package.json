@@ -1,0 +1,36 @@
+{
+  "name": "knxfloat",
+  "version": "1.0.0",
+  "description": "Offers functions for conversion between standard Javascript numbers and their corresponding representation as KNX conform 16 bit floating point numbers.",
+  "keywords": [ "knx", "float" ],
+  "homepage": "https://github.com/tobiaswegner/knxfloat",
+  "license" : "MIT",
+  "author": {
+    "name": "Tobias Wegner",
+    "url": "https://www.tobiaswegner.de"
+  },
+  "files": [
+    "js/index.js",
+    "js/index.d.ts",
+    "js/knxfloat.js",
+    "js/knxfloat.d.ts"
+  ],
+  "main": "./js/index.js",
+  "types": "./js/index.d.ts",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/tobiaswegner/knxfloat.git"
+  },
+  "devDependencies": {
+    "@types/chai": "*",
+    "@types/mocha": "*",
+    "chai": "*",
+    "mocha": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "scripts": {
+    "build": "tsc --extendedDiagnostics -p .",
+    "test": "mocha --require ts-node/register test/**/index.ts"
+  }
+}
