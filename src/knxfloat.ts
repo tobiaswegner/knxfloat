@@ -44,19 +44,25 @@ export function ConvertNumberToKNXFloat( number: number ): number {
 
   let sign = 0;
   let exponent = 0;
-  let mantisse = 0;
-
-  if (number < 0) {
-    sign = 1;
-    mantisse = ~number;
-  } else {
-    mantisse = number;
-  }
-
+  let mantisse = Math.abs(number);
+  
   while (mantisse > 2047) {
     mantisse /= 2.0;
     exponent++;
   }
+  
+  if (number < 0) {
+    sign = 1;
+    //all bitwise operations are performed on 32 bits binary numbers for Javascript.
+    // NOT (~) operator cannot be used , so string and array methods are used.
+    mantisse = Math.round(mantisse).toString(2).padStart(11,0).split('').reduce((acc,cur)=>cur==='1'?acc+='0':acc+='1','');
+    //add 1, KNX Association docs.
+    mantisse=parseInt(mantisse,2)+1
+  } else {
+    mantisse =Math.round(mantisse)
+  }
+
+
 
   return (sign << 15) | (exponent << 11) | mantisse;
 }
