@@ -19,7 +19,7 @@ export function ConvertKNXFloatToNumber( knxFloat: number ): number {
   // check sign bit
   if (knxFloat & 0x8000) {
     // negative number in two complement
-    mantisse = ~mantisse;
+    mantisse = ((~0) << 11) | mantisse;
   }
 
   // 
@@ -44,19 +44,16 @@ export function ConvertNumberToKNXFloat( number: number ): number {
 
   let sign = 0;
   let exponent = 0;
-  let mantisse = 0;
+  let mantisse = number;
 
   if (number < 0) {
     sign = 1;
-    mantisse = ~number;
-  } else {
-    mantisse = number;
   }
 
-  while (mantisse > 2047) {
+  while ((mantisse < -2048) || (mantisse > 2047)) {
     mantisse /= 2.0;
     exponent++;
   }
 
-  return (sign << 15) | (exponent << 11) | mantisse;
+  return (sign << 15) | (exponent << 11) | (mantisse & 0x7ff);
 }
