@@ -28,6 +28,22 @@ describe('Convert KNX float to number', () => {
     })
   })
 
+  describe('ConvertKNXFloatToNumber(0x87FF)', () => {
+    let value = ConvertKNXFloatToNumber(0x87FF);
+
+    it('should return -0.01', () => {
+      expect(value).to.equal(-0.01);
+    })
+  })
+
+  describe('ConvertKNXFloatToNumber(0x879C)', () => {
+    let value = ConvertKNXFloatToNumber(0x879C);
+
+    it('should return -1.0', () => {
+      expect(value).to.equal(-1.0);
+    })
+  })
+
   describe('ConvertKNXFloatToNumber(0x7FFF)', () => {
     let value = ConvertKNXFloatToNumber(0x7FFF);
 
@@ -39,8 +55,8 @@ describe('Convert KNX float to number', () => {
   describe('ConvertKNXFloatToNumber(0xFFFF)', () => {
     let value = ConvertKNXFloatToNumber(0xFFFF);
 
-    it('should return -671088.64', () => {
-      expect(value).to.equal(-671088.64);
+    it('should return -327.68', () => {
+      expect(value).to.equal(-327.68);
     })
   })
 })
@@ -83,6 +99,22 @@ describe('Convert number to KNX float', () => {
 
     it('should return 0x0C1A', () => {
       expect(value).to.equal(0x0C1A);
+    })
+  })
+
+  describe('ConvertNumberToKNXFloat(-0.01)', () => {
+    let value = ConvertNumberToKNXFloat(-0.01);
+
+    it('should return 0x87FF', () => {
+      expect(value).to.equal(0x87FF);
+    })
+  })
+
+  describe('ConvertNumberToKNXFloat(-1.0)', () => {
+    let value = ConvertNumberToKNXFloat(-1.0);
+
+    it('should return 0x879C', () => {
+      expect(value).to.equal(0x879C);
     })
   })
 
